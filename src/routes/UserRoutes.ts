@@ -90,12 +90,15 @@ async function chat_(req: IReq, res: IRes) {
 * Load Room Chats  
  */
 async function loadChats_(req: IReq, res: IRes) {
-  const { roomId } = req.query;
+  const { to, from } = req.query;
+
+  const [toId] = new String(to).split(':');
+  const [fromId] = new String(from).split(':');
 
   // If room has some chats
   const chats = getChats();
   console.log("load chats", chats);
-  const room_chats = chats.filter(chat => chat.roomId == roomId);
+  const room_chats = chats.filter(chat => (chat.from == fromId && chat.to == toId) || (chat.to == fromId && chat.from == toId));
 
   res.status(HttpStatusCodes.OK).json({ room_chats });
 }

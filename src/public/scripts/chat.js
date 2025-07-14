@@ -15,7 +15,7 @@ loadChats();
 */
 function loadChats() {
   Http
-    .get('/api/v1/users/load-chats?room=' + roomId)
+    .get('/api/v1/users/load-chats?from=' + fromData + '&to=' + toData)
     .then(resp => resp.json())
     .then(resp => {
       var allChatsTemplate = document.getElementById('all-chats-template'),
