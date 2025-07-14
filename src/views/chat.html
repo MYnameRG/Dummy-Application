@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+        }
+
+        #input:focus {
+            outline: none;
+        }
+
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages>li {
+            padding: 0.5rem 1rem;
+        }
+
+        #messages>li:nth-child(odd) {
+            background: #efefef;
+        }
+
+        #user-bar {
+            background-color: aqua;
+            height: 3rem;
+        }
+    </style>
+
+    <!-- Handlebars -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Integrate Chat System -->
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<!-- Body -->
+
+<body>
+    <!-- Display User Bar -->
+    <div id="user-bar">
+        <div id="name-box"></div>
+    </div>
+
+    <!-- Display Chat System -->
+    <ul id="messages"></ul>
+
+    <div id="chat-bar">
+        <div id="status"></div>
+        <form id="form" action="">
+            <input id="input" autocomplete="off" />
+            <button id="button">Send</button>
+        </form>
+    </div>
+
+    <!-- Chats -->
+    <script id="all-chats-template" type="text/x-handlebars-template">
+        {{#each chats}}
+            <li>{{msg}}</li>
+        {{/each}}
+    </script>
+</body>
+
+<script src="http://localhost:3000/scripts/http.js"></script>
+<script src="http://localhost:3000/scripts/chat.js"></script>
+
+</html>
