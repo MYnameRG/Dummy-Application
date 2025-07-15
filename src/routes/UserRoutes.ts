@@ -87,7 +87,7 @@ async function chat_(req: IReq, res: IRes) {
 }
 
 /**
-* Load Room Chats  
+ * Load Room Chats
  */
 async function loadChats_(req: IReq, res: IRes) {
   const { to, from } = req.query;
@@ -103,6 +103,19 @@ async function loadChats_(req: IReq, res: IRes) {
   res.status(HttpStatusCodes.OK).json({ room_chats });
 }
 
+/**
+ * Generate Room Chats
+ */
+async function generateChats_(req: IReq, res: IRes) {
+  const { id } = req.query;
+
+  const chats = getChats();
+  const room_chats = chats.filter(chat => chat.from == id || chat.to == id);
+
+  await UserService.generateDocs(room_chats);
+  res.status(HttpStatusCodes.OK).json({ room_chats });
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -114,4 +127,5 @@ export default {
   delete: delete_,
   chat: chat_,
   load: loadChats_,
+  generate: generateChats_,
 } as const;

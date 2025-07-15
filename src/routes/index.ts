@@ -24,6 +24,7 @@ userRouter.put(Paths.Users.Update, UserRoutes.update);
 userRouter.delete(Paths.Users.Delete, UserRoutes.delete);
 userRouter.get(Paths.Users.Chat, UserRoutes.chat);
 userRouter.get(Paths.Users.Load, UserRoutes.load);
+userRouter.get(Paths.Users.Generate, UserRoutes.generate);
 
 // Add version Router to specific feature
 versionRouter.use(Paths.Version, apiRouter);

@@ -10,5 +10,6 @@ export default {
     Delete: '/delete/:id',
     Chat: "/chat",
     Load: "/load-chats",
+    Generate: "/generate-docs"
   },
 } as const;

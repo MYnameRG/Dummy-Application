@@ -73,6 +73,8 @@ document.addEventListener('click', event => {
     makeCurrentUser(ele);
   } else if (ele.matches('.chat-user-btn')) {
     openChatSystem(ele);
+  }  else if (ele.matches('.generate-doc-btn')) {
+    generateDocument(ele);
   }
 }, false);
 
@@ -90,6 +92,7 @@ function addUser() {
       created: new Date(),
     },
   };
+
   // Call api
   Http
     .post('/api/v1/users/add', data)
@@ -138,6 +141,7 @@ function submitEdit(ele) {
       created: new Date(created),
     },
   };
+
   Http
     .put('/api/v1/users/update', data)
     .then(() => displayUsers());
@@ -173,4 +177,16 @@ function openChatSystem(ele) {
   anchor.href = `http://localhost:3000/api/v1/users/chat?to=${toId}:${toName}&from=${currentUser.id}:${currentUser.name}`;
   anchor.target = "_blank";
   anchor.click();
+}
+
+/**
+ * Generate Docs
+ */
+function generateDocument(ele) {
+  var id = ele.getAttribute('data-to-user-id');
+  Http
+    .get(`/api/v1/users/generate-docs?id=${id}`)
+    .then(() => {
+      console.log('Generating Docs');
+    });
 }

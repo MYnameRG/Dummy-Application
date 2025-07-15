@@ -56,8 +56,16 @@ async function _delete(id: number): Promise<void> {
       USER_NOT_FOUND_ERR,
     );
   }
+  
   // Delete user
   return UserRepo.delete(id);
+}
+
+/**
+ * Generate Docs
+ */
+async function _generateDocs(chats: Array<any>): Promise<void> {
+  
 }
 
 
@@ -70,4 +78,5 @@ export default {
   addOne,
   updateOne,
   delete: _delete,
+  generateDocs: _generateDocs
 } as const;
